@@ -7,7 +7,6 @@ def otherlines(line, listoflines):
 
 def findsum(xlist):
     for line in xlist:
-#        print(xlist.index(line))
         olns = otherlines(line, xlist)
         for oln in olns:
             sum = int(line) + int(oln)
