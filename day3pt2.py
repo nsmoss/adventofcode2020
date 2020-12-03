@@ -3,7 +3,8 @@
 import os
 
 def createslope(inputfile, outputfile):
-    os.remove(outputfile)
+    if os.path.exists(outputfile):
+        os.remove(outputfile)
     fr = open(inputfile, "r")
     fa = open(outputfile, "a")
     lines = [line.rstrip() for line in fr]
