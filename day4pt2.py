@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import re
+from sys import argv
 
 def createpassports(passportfile):
     passports = open(passportfile).read().split("\n\n")
@@ -61,4 +62,4 @@ def testfields(fieldvalue, field):
     return False
 
 if __name__ == "__main__":
-    print(testpassports("day4input.txt"))
+    print(testpassports(argv[1]))
