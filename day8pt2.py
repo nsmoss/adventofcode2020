@@ -43,14 +43,15 @@ def loop_calc(data_set):
 def calc_finish(data_set):
     line_pointer = 0
     for instruction_line in data_set:
-        datatry = copy.deepcopy(data_set)
         if instruction_line[0] == "nop":
+            datatry = copy.deepcopy(data_set)
             datatry[line_pointer][0] = "jmp"
             attempt = loop_calc(datatry)
             if attempt[1] == True:
                 print(attempt[0])
                 break
         elif instruction_line[0] == "jmp":
+            datatry = copy.deepcopy(data_set)
             datatry[line_pointer][0] = "nop"
             attempt = loop_calc(datatry)
             if attempt[1] == True:
