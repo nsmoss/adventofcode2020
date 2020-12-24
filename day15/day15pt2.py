@@ -1,21 +1,17 @@
-#!/usr/bin/env python
+!/usr/bin/env python
 
 starting_nums = [14,1,17,0,3,20]
-all_nums_spoken = starting_nums
+all_nums_spoken = {num:turn for turn, num in enumerate(starting_nums)}
 
-for numspoken in range(6,30000000):
-    print(f'Working on turn {numspoken}')
-    lastturn = len(all_nums_spoken) - 1
-    lastnum = all_nums_spoken[lastturn]
-    if lastnum in all_nums_spoken[:-1]:
-        earlier_turn = all_nums_spoken.index(lastnum)
-        turn_diff = lastturn - earlier_turn
-        all_nums_spoken[earlier_turn] = "used"
-        all_nums_spoken.append(turn_diff)
+iterator = 0
+current_spoken = 0
+for numspoken in range (6, 29999999):
+    if current_spoken in all_nums_spoken:
+        current_num = numspoken - all_nums_spoken[current_spoken]
+        all_nums_spoken[current_spoken] = numspoken
+        current_spoken = current_num
     else:
-        all_nums_spoken.append(0)
-    while all_nums_spoken[0] == "used":
-        all_nums_spoken.pop(0)
-
-f = open("outputfile.txt", "w")
-f.write((str(all_nums_spoken[-1])))
+        all_nums_spoken[current_spoken] = numspoken
+        current_spoken = 0
+        
+print(current_spoken)
